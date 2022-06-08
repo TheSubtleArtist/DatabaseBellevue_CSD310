@@ -2,28 +2,30 @@
     "uID":"someKey",
     "uFirstName":"someText",
     "uLastName":"moreText",
-    "uBirthday":"someDate",
-    "dependant1" :{
+    "uBirthday":{
+        "bDay": "someDay",
+        "bMonth": "someMonth",
+        "bYear": "someYear"
+    },
+    "dependant" :[{
         "dID":"dependantID",
         "dName":"dependantName",
         "dBday":"depdendantBirthday"
     },
-    "dependant2":{
+    {
         "dID":"dependantID",
         "dName":"dependantName",
         "dBday":"depdendantBirthday"
-    },
-    "role1":{
+    }
+    ],
+    "role" : [
+        {
         "rID":"roleID",
         "rTitle":"roleTitle"
     },
-    "role2":{
+    {
         "rID":"roleID",
         "rTitle":"roleTitle"
     }
-
-
-
-
-
+    ]
 }
