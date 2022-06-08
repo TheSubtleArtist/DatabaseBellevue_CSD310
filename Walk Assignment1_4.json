@@ -1,0 +1,29 @@
+{
+    "uID":"someKey",
+    "uFirstName":"someText",
+    "uLastName":"moreText",
+    "uBirthday":"someDate",
+    "dependant1" :{
+        "dID":"dependantID",
+        "dName":"dependantName",
+        "dBday":"depdendantBirthday"
+    },
+    "dependant2":{
+        "dID":"dependantID",
+        "dName":"dependantName",
+        "dBday":"depdendantBirthday"
+    },
+    "role1":{
+        "rID":"roleID",
+        "rTitle":"roleTitle"
+    },
+    "role2":{
+        "rID":"roleID",
+        "rTitle":"roleTitle"
+    }
+
+
+
+
+
+}
