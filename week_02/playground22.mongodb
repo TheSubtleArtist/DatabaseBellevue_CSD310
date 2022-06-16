@@ -1,39 +1,117 @@
-// MongoDB Playground
-// To disable this template go to Settings | MongoDB | Use Default Template For Playground.
-// Make sure you are connected to enable completions and to be able to run a playground.
-// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+use ("bookstore");
 
-// Select the database to use.
-use('mongodbVSCodePlaygroundDB');
+// create collection
+db.createCollection('customers')
 
-// The drop() command destroys all data from a collection.
-// Make sure you run it against the correct database and collection.
-db.sales.drop();
+// Insert a single document into a collection
+db.books.insertOne({title:"The Color of Magic", author: "Terry Pratchett", pages:300, rating:7, genres:["fantasy", "magic"]})
 
-// Insert a few documents into the sales collection.
-db.sales.insertMany([
-  { '_id': 1, 'item': 'abc', 'price': 10, 'quantity': 2, 'date': new Date('2014-03-01T08:00:00Z') },
-  { '_id': 2, 'item': 'jkl', 'price': 20, 'quantity': 1, 'date': new Date('2014-03-01T09:00:00Z') },
-  { '_id': 3, 'item': 'xyz', 'price': 5, 'quantity': 10, 'date': new Date('2014-03-15T09:00:00Z') },
-  { '_id': 4, 'item': 'xyz', 'price': 5, 'quantity':  20, 'date': new Date('2014-04-04T11:21:39.736Z') },
-  { '_id': 5, 'item': 'abc', 'price': 10, 'quantity': 10, 'date': new Date('2014-04-04T21:23:13.331Z') },
-  { '_id': 6, 'item': 'def', 'price': 7.5, 'quantity': 5, 'date': new Date('2015-06-04T05:08:13Z') },
-  { '_id': 7, 'item': 'def', 'price': 7.5, 'quantity': 10, 'date': new Date('2015-09-10T08:43:00Z') },
-  { '_id': 8, 'item': 'abc', 'price': 10, 'quantity': 5, 'date': new Date('2016-02-06T20:20:13Z') },
-]);
+//Insert many documents at once
+db.books.insertMany([{title: "The Light Fantastic", author: "Terry Pratchett", pages: 250, rating: 6, genres: ["fantasy"]}, {title: "Dune", author: "Frank Herbert", pages: 500, rating: 10, genres: ["sci-fi", "dystopian"]}]
+)
 
-// Run a find command to view items sold on April 4th, 2014.
-db.sales.find({ date: { $gte: new Date('2014-04-04'), $lt: new Date('2014-04-05') } });
+// Finding all documents
+db.books.find()
 
-// Build an aggregation to view total sales for each product in 2014.
-const aggregation = [
-  { $match: { date: { $gte: new Date('2014-01-01'), $lt: new Date('2015-01-01') } } },
-  { $group: { _id: '$item', totalSaleAmount: { $sum: { $multiply: [ '$price', '$quantity' ] } } } }
-];
+// find by a key field
+db.books.find({author:"Pratchett"})
 
-// Run the aggregation and open a cursor to the results.
-// Use toArray() to exhaust the cursor to return the whole result set.
-// You can use hasNext()/next() to iterate through the cursor page by page.
-db.sales.aggregate(aggregation);
+// find by multiple fields
+db.books.find({author: "Pratchett", rating:7})
 
-db.invoice_items.insertOne({name:'cookie sheet', price:8.99, quantity:2})
+//find all items but display only certain fields
+db.books.find({}, title:1, author:1)
+
+//find by fields but display only certain fields
+db.books.find({rating:7}, {title:1, author:1})
+
+//Method Chaining, count the total number of records
+db.books.find().count()
+
+//sorting all documents ascending (1) and descending (-1)
+db.books.find().sort(author:1)
+db.books.find().sort(author:-1)
+
+//NESTED DOCUMENTS
+
+db.books.insertOne({title:"Dune", author:"Frank Herbert", rating:10, pages:400, genres:["sci-fi", "fantasy"] reviews[{name:"Yoshi", body:"Great"}, {name:"Mario", body:"Super"}, {name:"Luigi", body:"duper"}]})
+ 
+//OPERATORS AND COMPLEX QUERIES
+
+// finding all books with rating greater than seven
+db.books.find({rating:{$gt:7}})    
+
+// finding all books with rating equal to or greater than seven
+db.books.find({rating:{$gte:7}})   
+
+//finding all books with rating less than seven
+db.books.find({rating:{$lt:7}})    
+
+//finding all books with rating equal to or less than seven
+db.books.find({rating:{$lte:7}})   
+
+// find all books by an author with a rating greater than 7
+db.books.find({rating:{$gt:7}, author:"Frank Herbert"})    
+
+// the "OR" operator to find books rated either 7 or 9
+db.books.find({$or:[{rating:7}, {rating:9}]})
+
+// the "OR" operator to find books rated either 7 or with particulr author
+db.books.find({$or:[{rating:7}, {author: "Terry Pratchett"}]})
+
+// $IN AND $NIN
+
+//find all books with a rating in the given array 7 or 8 or 9
+ db.books.find({rating:{$in:[7,8,9]}})
+
+//find books not in a set of values
+ db.books.find({rating:{$nin:[7,8,9]}})
+
+ //QUERYING ARRAYS
+
+//genres are arrays contained with books document
+//the db knows to look inside the document, into the array
+//searchs to see if the value appears in the array
+ db.books.find({genres:"fantasy"})
+
+ //find items where the array contains only the value passed, no more
+ db.books.find({genre:["fantasy"]})
+
+ // searching for records where the array contains all the passed values, but can contain more
+ db.books.find({genres: {$all: ["fantasy", "sci-fi"]}})
+
+ // query nested document "review" and search by the reviewer
+ db.books.find({"reviews.name":"luigi"})
+
+ // DELETING DOCUMENTS
+
+//delete a single book using oid
+db.books.deleteOne("_id": {"$oid": "62aa908902cec760c2e3e713"})
+
+// UPDATING DOCUMENTS
+
+//update a single document
+db.books.updateOne("_id": {"$oid": "62aa908902cec760c2e3e713"}, {$set:{rating:8, pages:400} })
+
+// update many
+db.books.updateMany({author:"Terry Pratchett"}, {$set:{author:"Terry Pratchet"}})
+
+// increment operator, increment 
+
+db.books.updateOne("_id": {"$oid": "62aa908902cec760c2e3e713"}, {$inc:{pages: 2}})
+
+// increment operator, decrement 
+
+db.books.updateOne("_id": {"$oid": "62aa908902cec760c2e3e713"}, {$inc:{pages: -2}})
+
+//pushing values to or pulling values from an array
+db.books.updateOne("_id": {"$oid": "62aa908902cec760c2e3e713"}, {$pull: {genres: "fantasy"}})
+db.books.updateOne("_id": {"$oid": "62aa908902cec760c2e3e713"}, {$push: {genres: "fantasy"}})
+
+// $each takes and array as a value and performs the function for multiple values provided
+db.books.updateOne("_id": {"$oid": "62aa908902cec760c2e3e713"}, {$pull: {genres: {$each:["genre1", "genre2"]}}})
+db.books.updateOne("_id": {"$oid": "62aa908902cec760c2e3e713"}, {$push: {genres: {$each:["genre1", "genre2"]}}})
+
+
+// MongoDB DRIVERS
+//Python: https://www.mongodb.com/docs/drivers/python/
