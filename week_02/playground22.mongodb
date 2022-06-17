@@ -113,5 +113,7 @@ db.books.updateOne("_id": {"$oid": "62aa908902cec760c2e3e713"}, {$pull: {genres:
 db.books.updateOne("_id": {"$oid": "62aa908902cec760c2e3e713"}, {$push: {genres: {$each:["genre1", "genre2"]}}})
 
 
-// MongoDB DRIVERS
-//Python: https://www.mongodb.com/docs/drivers/python/
+// MongoDB Driver
+
+
+db.customers.insertOne((user_name:"chkltchp", first_name:"elvis", last_name:"kuebler", date_of_birth:new ISODate("1979-12-24"), invoices:["np2020601001", "vp2020601002"]))
