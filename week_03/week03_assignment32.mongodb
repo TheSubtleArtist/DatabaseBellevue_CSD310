@@ -1,0 +1,167 @@
+use("cybr410_assignment32")
+db.createCollection('user')
+db.createCollection("permission")
+db.createCollection("link_user_role")
+db.createCollection("link_role_permission")
+
+db.user.insertMany([
+{
+    user_uid: 'user01',
+    user_fname: 'robin',
+    user_lname: 'hood',
+    user_email: 'knigh@intothewoods.org',
+    user_creation: '06-Jan-2021',
+    user_modified: '08-Jun-2022'
+},
+
+{
+    user_uid: 'user02',
+    user_fname: 'john',
+    user_lname: 'little',
+    user_email: 'thief@intheday.gov',
+    user_creation: '12-Dec-2014',
+    user_modified:'12-Dec-2014'
+}
+])
+
+db.link_user_role.insertMany([
+{
+    user_uid: ['user01'],
+    role_uid: 'r01',
+    link_created: '03-Jan-2010',
+    link_modified: '04-jan-2010'
+},
+{
+    user_uid: ['user02'],
+    role_uid: 'r02',
+    link_created:'03-Jan-2010',
+    link_modified:'04-jan-2010'
+},
+{
+    user_uid: ['user01', 'user02'],
+    role_uid: 'r03',
+    link_created:'03-Jan-2010',
+    link_modified: '04-jan-2012'
+},
+{
+    user_uid: ['user01', 'user02'],
+    role_uid: 'r04',
+    link_created:'03-Jan-2010',
+    link_modified: '04-jan-2013'
+}
+])
+
+db.role.insertMany([
+{
+    role_uid: 'r01',
+    role_name: 'developer',
+    role_creation: '01-jan-2010',
+    role_modified: '01-jan-2011'
+},
+{
+    role_uid: 'r02',
+    role_name: 'security',
+    role_creation: '02-jan-2010',
+    role_modified: '03-jan-2011'
+}, 
+{
+    role_uid: 'r03',
+    role_name: 'administrator',
+    role_creation: '03-jan-2010',
+    role_modified: '03-jan2011'
+}, 
+{
+    role_uid: 'r04',
+    role_name: 'auditor',
+    role_creation: '04-jan-2010',
+    role_modified: '04-jan-2010'
+}
+
+])
+
+db.link_role_permission.insertMany([
+    {
+    role_id: 'r01',
+    permission_id: ['p01', 'p02'],
+    link_created:'01-jan-2010',
+    link_modified:'01-jan-2010'
+    },
+    {
+    role_id: 'r02',
+    permission_id:['p03', 'p04'],
+    link_created:'01-jan-2010',
+    link_modified:'01-jan-2010'
+    },
+    {
+    role_id:'r03',
+    permission_id: ['p04', 'p05'],
+    link_created:'01-jan-2010',
+    link_modified:'04-jan-2010'
+    },
+    {
+    role_id:'r04',
+    permission_id:['p06', 'p07'],
+    link_created:'01-jan-2010',
+    link_modified:'04-jan-2010'
+    }
+])
+
+db.permission.insertMany([
+{
+    permission_uid: 'p01',
+    permission_name: 'data_read',
+    permission_description: 'reads the data',
+    permission_created: '01-Jan-2010',
+    permission_modified: '01-Jan-2010'
+},
+{
+    permission_uid:'p02',
+    permission_name: 'data-write',
+    permission_description: 'enters new records',
+    permission_created:'01-Jan-2010',
+    permission_modified:'01-Jan-2010'
+},
+{
+    permission_uid: 'p03',
+    permission_name: 'data_execute',
+    permission_description: 'executes queries',
+    permission_created:'01-Jan-2010',
+    permission_modified:'01-Jan-2010'
+},
+{
+    permission_uid: 'p03',
+    permission_name: 'code_read',
+    permission_description: 'able to read code',
+    permission_created:'01-Jan-2010',
+    permission_modified:'01-Jan-2010'
+},
+{
+    permission_uid: 'p04',
+    permission_name: 'code_write',
+    permission_description: 'enters new code',
+    permission_created:'01-Jan-2010',
+    permission_modified:'01-Jan-2010'
+},
+{
+    permission_uid: 'p05',
+    permission_name: 'code_modify',
+    permission_description: "modifies existing code code",
+    permission_created:'01-Jan-2010',
+    permission_modified:'01-Jan-2010'
+},
+{
+    permission_uid: 'p06',
+    permission_name: 'data_modify',
+    permission_description: "modifies existing data",
+    permission_created:'01-Jan-2010',
+    permission_modified:'01-Jan-2010'
+}, 
+{
+    permission_uid: 'p07',
+    permission_name: 'data_dete',
+    permission_description: "deletes data",
+    permission_created:'01-Jan-2010',
+    permission_modified:'01-Jan-2010'
+}
+
+])

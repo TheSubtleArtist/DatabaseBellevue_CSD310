@@ -1,0 +1,54 @@
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;Relation&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;240&lt;/x&gt;&lt;y&gt;250&lt;/y&gt;&lt;w&gt;190&lt;/w&gt;&lt;h&gt;40&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;lt=&amp;lt;-
+m1=0..n&lt;/panel_attributes&gt;&lt;additional_attributes&gt;10;10;170;10&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;Relation&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;240&lt;/x&gt;&lt;y&gt;250&lt;/y&gt;&lt;w&gt;190&lt;/w&gt;&lt;h&gt;40&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;lt=&amp;lt;-
+m1=0..n&lt;/panel_attributes&gt;&lt;additional_attributes&gt;10;10;170;10&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>10</x><y>435</y><w>230</w><h>190</h></coordinates><panel_attributes>publisher
+--
+{
+publisher_name: "ThePublisher"
+publisher_code: "CodeString"
+publisher_address: "address string"
+}
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>530</x><y>415</y><w>210</w><h>250</h></coordinates><panel_attributes>book
+--
+{
+book_isbn10:0000000000
+book_name: "the book
+book_author:"proper noun"
+book_publisher:"publisher name"
+book_price:0.00
+}</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>970</x><y>455</y><w>210</w><h>150</h></coordinates><panel_attributes>author
+--
+{
+aid:"short string"
+author_name:"proper noun"
+author_phone:string
+author_email:['one or more strings']
+genre:['one or more strings']
+}</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>230</x><y>525</y><w>320</w><h>50</h></coordinates><panel_attributes>lt=&lt;-
+m1=1..n
+publishes
+m2=1.1</panel_attributes><additional_attributes>300;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>730</x><y>515</y><w>260</w><h>50</h></coordinates><panel_attributes>lt=&lt;-
+m1=1..n
+writes
+m2=1.1</panel_attributes><additional_attributes>10;20;240;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>360</x><y>90</y><w>170</w><h>250</h></coordinates><panel_attributes>book
+--
+book_isbn:string
+book_name:string
+book_author:string
+book_price:double</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>700</x><y>140</y><w>210</w><h>150</h></coordinates><panel_attributes>author
+--
+aid:string
+author_name:string
+author_phone:array
+author_email:array
+genre:array</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>180</x><y>200</y><w>200</w><h>50</h></coordinates><panel_attributes>lt=&lt;-
+m1=1..n
+publishes
+m2=1.1</panel_attributes><additional_attributes>180;20;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>520</x><y>210</y><w>200</w><h>50</h></coordinates><panel_attributes>lt=&lt;-
+m1=1..n
+writes
+m2=1.1</panel_attributes><additional_attributes>10;20;180;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>10</x><y>110</y><w>180</w><h>190</h></coordinates><panel_attributes>publisher document
+--
+publisher_name: string
+publisher_code: string
+publisher_address: array
+</panel_attributes><additional_attributes></additional_attributes></element></diagram>

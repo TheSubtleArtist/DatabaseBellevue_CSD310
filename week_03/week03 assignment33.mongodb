@@ -1,0 +1,87 @@
+//problem statement:
+//There is a publishing company which publishes many books.
+//Each book has one author (for the purposes of this assignment).
+//One author may write many books.
+//One publisher may publish multiple titles
+//One title may be published by one publisher
+
+
+
+
+db.publisher.insertMany([
+    {
+        publisher_name:'Burn It Down Publications',
+        publisher_code:'rtoeuicmvlo-eons',
+        publisher_address:'1313 Mockingbird Lane'
+    },
+    {
+        publisher_name:'You Asked For It Books',
+        publisher_code:'Dgeun-grniKunr',
+        publisher_address:'1601 Pennsylvania Ave.'
+    }
+
+    ])
+
+
+db.author.insertMany
+([
+    {
+        aid:'sf01',
+        author_name:'Robert Heinlein',
+        author_phone:'555-195-2478',
+        author_email:['mike@churchofallworlds.org', 'mike@lunarrevolution.fu'],
+        genre:['future history', 'science fiction']
+
+    },
+
+    {
+        aid:'sf02',
+        author_name:'Frank Herbert',
+        author_phone:'947-425-1374',
+        author_email:['jessica@atreides.gov', 'ship@pandora.god'],
+        genre:['Science Fiction']
+    },
+
+    {
+        aid:'ps01',
+        author_name:'George Orwell',
+        author_phone:'947-425-1374',
+        author_email:['horse@thefarm.org', 'pig@thefarm.gov'],
+        genre:['Philosophy', 'Future History', 'Political Satire']
+    }
+ ])
+
+    db.book.insertMany([
+    {
+        book_isbn10:1547956324,
+        book_name:'The Moon is a Harsh Mistress',
+        book_author:'Robert Heinlein',
+        book_price:35.99,
+        book_publisher: 'You Asked For It Books'
+
+    },
+    {
+        book_isbn10:1495347419,
+        book_name:'Stranger in a Strange Land',
+        book_author:'Robert Heinlein',
+        book_price:15.99,
+        book_publisher:'Burn It Down Publications'
+    },
+    {
+        book_isbn10:9564895716,
+        book_name:'Destination:Void',
+        book_author:'Frank Herbert',
+        book_price:24.99,
+        book_publisher:'Burn It Down Publications'
+    },
+    {
+        book_isbn10:6794254249,
+        book_name:'Keep the Aspidistra Flying',
+        book_author:'George Orwell',
+        book_price:24.99,
+        book_publisher: 'You Asked For It Books'
+    }
+
+    ])
+
+    
