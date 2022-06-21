@@ -1,0 +1,74 @@
+use('cybr410_assignment42')
+
+db.createCollection('student')
+db.createCollection('enrollment')
+db.createCollection('course')
+
+db.student.insertMany([
+  {
+    student_id: 'rd11' ,
+    first_name: 'thorton',
+    last_name: 'melon'
+  }, 
+  {
+    student_id: 'rd12' ,
+    first_name: 'derek',
+    last_name: 'lutz'
+  }
+])
+
+db.enrollement.insertMany([
+  {
+    term: '202108',
+    gpa: 2.5,
+    start_date: '27-aug-2021' ,
+    end_date: '22-nov-2021',
+    student_id: 'rd11',
+    courses:['mat110', 'lit110']
+  }, 
+    {
+    term: '202108',
+    gpa: 2.5,
+    start_date: '27-aug-2021' ,
+    end_date: '22-nov-2021',
+    student_id: 'rd12',
+    courses:['mat110', 'his10']
+  }
+
+])
+
+db.course.insertMany([
+  {
+    course_id: 'mat110' ,
+    course_title: 'linear algebra' ,
+    description: 'skills and knowledge required to not be an idiot in society',
+    instructor: 'david martin',
+    grade: 'c',
+    student_id: 'rd11'
+  }, 
+  {
+    course_id: 'his110',
+    course_title: 'history',
+    description: 'provides broad underestanding of historical timelines to people who want to believe they know everything.',
+    instructor: " prof. turgeson",
+    grade: 'f',
+    student_id: 'rd12'
+  },
+  {
+    course_id: 'lit110',
+    course_title: 'classic literature',
+    description: 'survey course to help young people understand their generation creates nothing new.' ,
+    instructor: 'diane turner',
+    grade: 'c',
+    student_id: 'rd11'
+  }, 
+  {
+    course_id: 'mat110' ,
+    course_title: 'linear algebra' ,
+    description: 'skills and knowledge required to not be an idiot in society.',
+    instructor: 'david martin',
+    grade: 'c',
+    student_id: 'rd12'
+  }
+
+])
