@@ -1,37 +1,46 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>0</x><y>80</y><w>160</w><h>230</h></coordinates><panel_attributes>user
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>50</x><y>80</y><w>160</w><h>230</h></coordinates><panel_attributes>user
 --
-user_uuid:string
+{
+user_uid:string
 user_fname:string
 user_lname:string
 user_email:string
 user_creation:date
 user_modified:date
 user_image:image
+}
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>310</x><y>90</y><w>100</w><h>160</h></coordinates><panel_attributes>link_user_role
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>310</x><y>90</y><w>140</w><h>160</h></coordinates><panel_attributes>link_user_role
 --
+{
 user_uid:string
 role_uid:array
 link_creation:date
 link_modification:date
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>620</x><y>30</y><w>130</w><h>200</h></coordinates><panel_attributes>role
+}</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>620</x><y>30</y><w>130</w><h>200</h></coordinates><panel_attributes>role
 --
+{
 role_uid:string
 role_name:string
 role_creation:date
-role_modified:date</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>560</x><y>350</y><w>190</w><h>180</h></coordinates><panel_attributes>link_role_permission
+role_modified:date
+}</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>560</x><y>350</y><w>190</w><h>180</h></coordinates><panel_attributes>link_role_permission
 --
+{
 role_id:string
 permission_id:array
 link_created:date
-link_modified:date</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>210</x><y>350</y><w>200</w><h>230</h></coordinates><panel_attributes>permission
+link_modified:date
+}</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>210</x><y>350</y><w>200</w><h>230</h></coordinates><panel_attributes>permission
 --
+{
 permission_uid: string
 permission_name:string
 permission_description:string
 permission_created:date
-permission_modified:date</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>150</x><y>170</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-m1=0..n</panel_attributes><additional_attributes>160;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>400</x><y>170</y><w>240</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-m1=0..n</panel_attributes><additional_attributes>220;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>220</y><w>50</w><h>150</h></coordinates><panel_attributes>lt=&lt;-
-m1=0..n</panel_attributes><additional_attributes>10;130;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>400</x><y>420</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
-m1=0..n</panel_attributes><additional_attributes>10;10;160;10</additional_attributes></element></diagram>
+permission_modified:date
+}</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>200</x><y>170</y><w>130</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+m1=1..n</panel_attributes><additional_attributes>110;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>440</x><y>170</y><w>200</w><h>40</h></coordinates><panel_attributes>lt=-&gt;
+m2=1..n</panel_attributes><additional_attributes>180;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>220</y><w>50</w><h>150</h></coordinates><panel_attributes>lt=&lt;-
+m1=1..n</panel_attributes><additional_attributes>10;130;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>400</x><y>420</y><w>180</w><h>40</h></coordinates><panel_attributes>lt=-&gt;
+m2=1..n</panel_attributes><additional_attributes>10;10;160;10</additional_attributes></element></diagram>

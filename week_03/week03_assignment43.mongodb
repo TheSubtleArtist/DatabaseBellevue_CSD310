@@ -17,7 +17,7 @@ db.student.insertMany([
   }
 ])
 
-db.enrollement.insertMany([
+db.enrollment.insertMany([
   {
     term: '202108',
     gpa: 2.5,
@@ -33,7 +33,23 @@ db.enrollement.insertMany([
     end_date: '22-nov-2021',
     student_id: 'rd12',
     courses:['mat110', 'his10']
-  }
+  },
+    {
+    term: '202201',
+    gpa: 2.5,
+    start_date: '05-jan-2022' ,
+    end_date: '15-apr-2022',
+    student_id: 'rd11',
+    courses:['ecn110', 'psy110']
+  }, 
+  {
+    term: '202201',
+    gpa: 2.5,
+    start_date: '27-aug-2021' ,
+    end_date: '22-nov-2021',
+    student_id: 'rd12',
+    courses:['csc110', 'pol110']
+  },
 
 ])
 
@@ -67,6 +83,38 @@ db.course.insertMany([
     course_title: 'linear algebra' ,
     description: 'skills and knowledge required to not be an idiot in society.',
     instructor: 'david martin',
+    grade: 'c',
+    student_id: 'rd12'
+  },
+  {
+    course_id: 'ecn110',
+    course_title: 'fundamental of economics',
+    description: 'just enough information to make a teenager think they are qualified economists',
+    instructor: 'richard wolff',
+    grade: 'b',
+    student_id: 'rd11'
+  },
+  {
+    course_id: 'pol110',
+    course_title: 'Political Science 1',
+    description: 'science only matters when we tell you it matters',
+    instructor: 'staff',
+    grade: 'd',
+    student_id:'rd12'
+  },
+  {
+    course_id: 'psy110',
+    course_title: 'human psychology 1',
+    description: 'being mad means you are right',
+    instructor: 'amy king',
+    grade: 'b',
+    student_id: 'rd11'
+  },
+  {
+    course_id: 'csc110',
+    course_title: "Computers for Everyone",
+    description: 'So, you played MMORPG and still got your identity stolen',
+    instructor: 'phillip cummings' ,
     grade: 'c',
     student_id: 'rd12'
   }
