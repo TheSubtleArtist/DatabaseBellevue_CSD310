@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 from pprint import pprint
-mongoUname = 'ViktorS'
-mongoPword = 'D3adFr0g2'
+mongoUname = 'admin'
+mongoPword = 'admin'
 client = MongoClient(f'mongodb+srv://{mongoUname}:{mongoPword}@cluster0.qhciunv.mongodb.net/?retryWrites=true&w=majority')
 db = client.pytech
 
