@@ -46,13 +46,6 @@ if __name__ == '__main__':
         print('\n'+'End of program...')
         exit(0)
 
-        #fsid=int(input('Input a student id number (1007, 1008, or 1009), or any other key to exit '))
-        #while fsid in fsids:
-            #print('--DISPLAYING STUDENTS DOCUMENTS FROM find_one() QUERY--')
-            #findOne(fsid)
-            #fsid=int(input('Input a student id number (1007, 1008, or 1009), or any other key to exit '))
-        #if input('\n'+'End of program, press any key to exit...'): exit(0)
-
     
 
 
