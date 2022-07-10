@@ -1,0 +1,14 @@
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>&lt;diagram program="umletino" version="14.4.0-SNAPSHOT"&gt;&lt;zoom_level&gt;10&lt;/zoom_level&gt;&lt;element&gt;&lt;id&gt;Relation&lt;/id&gt;&lt;coordinates&gt;&lt;x&gt;10&lt;/x&gt;&lt;y&gt;250&lt;/y&gt;&lt;w&gt;420&lt;/w&gt;&lt;h&gt;120&lt;/h&gt;&lt;/coordinates&gt;&lt;panel_attributes&gt;lt=&amp;lt;-
+m1=0..n&lt;/panel_attributes&gt;&lt;additional_attributes&gt;240;10;10;100;400;10&lt;/additional_attributes&gt;&lt;/element&gt;&lt;/diagram&gt;Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>190</x><y>300</y><w>160</w><h>180</h></coordinates><panel_attributes>Player
+--
+player_id (pimrary key)
+team_id (foreign key)
+first_name
+last_name</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>530</x><y>290</y><w>140</w><h>190</h></coordinates><panel_attributes>team
+--
+team_id
+team_name
+mascot</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>380</y><w>210</w><h>50</h></coordinates><panel_attributes>lt=&lt;-
+m1=1..1
+m2=1..N
+</panel_attributes><additional_attributes>190;20;10;20</additional_attributes></element></diagram>
