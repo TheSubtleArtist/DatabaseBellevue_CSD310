@@ -1,6 +1,7 @@
 import mysql.connector
 from mysql.connector import errorcode
 
+# parameter to establish the connection
 config = {
     'user'             :'pysports_user',
     'password'         :'MySQL8IsGreat!',
@@ -9,8 +10,12 @@ config = {
     'raise_on_warnings':True
 }
 
+# create the connection
 pysportsdb = mysql.connector.connect(**config)
+
+# create the cursor
 pysportscursor = pysportsdb.cursor()
+
 
 def dbConnect(connect):
     try:
@@ -24,11 +29,13 @@ def dbConnect(connect):
         else:
             print(err)
 
+# print all tables
 def printTables(cursor):
     cursor.execute('show tables')
     for record in cursor:
         print(record)
 
+# display all entries in the "teams" table
 def allTeams(cursor, table):
     print(f'--DISPLAYING THE {table.upper()} RECORDS--')
     cursor.execute(f'SELECT * FROM {table}')
@@ -36,6 +43,7 @@ def allTeams(cursor, table):
         print(f'{table.title()} ID: {record[0]}', f'{table.title()} Name: {record[1]}', f'{table.title()} Mascot: {record[2]}', sep='\n')
         print('\n')
 
+# display all entries in the 'players' table
 def allPlayers(cursor, table):
     print(f'--DISPLAYING THE {table.upper()} RECORDS--')
     cursor.execute(f'SELECT * FROM {table}')
