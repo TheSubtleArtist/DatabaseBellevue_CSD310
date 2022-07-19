@@ -56,8 +56,10 @@ def allPlayers(cursor, table):
 if __name__ == '__main__':
     dbConnect(pysportsdb)
     #printTables(pysportscursor)
-    allTeams(pysportscursor, 'team')
-    allPlayers(pysportscursor, 'player')
+    tblName = 'team'
+    allTeams(pysportscursor, tblName)
+    tblName = 'player'
+    allPlayers(pysportscursor, tblName)
     input('Press any key to continue...')
     pysportsdb.close()
     exit(0)
