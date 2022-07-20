@@ -14,7 +14,7 @@ if __name__ == '__main__':
     # attempt to establish the connection
     try:
         db = mysql.connector.connect(**config)
-        print('\n Database user {} connected to MySQL on host {} wiht database {}.'.format(config['user'], config['host'], config['database']))
+        print('\n Database user {} connected to MySQL on host {} with database {}.'.format(config['user'], config['host'], config['database']))
         input('\n\n Press any key to continue...')
     # provide the error information if the connection fails    
     except mysql.connector.Error as err:
