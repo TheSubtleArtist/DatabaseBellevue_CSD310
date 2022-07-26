@@ -3,6 +3,15 @@ import mysql.connector
 from mysql.connector import errorcode
 from time import sleep
 
+"""
+This would not run on my computer without inserting sleep periods. 
+I expect this a continuation from my problems last week.
+I have not verified, but I am sure this is due to the purchase of a new laptop
+The new laptop has a Ryzen 7-6800 CPU and 32GB DDR5. 
+I assume either VS Code or MySQL presents a bottleneck, unable to respond fast enough to the other.
+Hardware simply pushes information whether the software is prepared or not. 
+I have no idea how to actually test this.
+"""
 wait = 1
 
 # parameter to establish the connection
@@ -69,7 +78,7 @@ def players_inner_join(cursor, purpose):
        print(f'Player ID: {record[0]}', f'First Name: {record[1].title()}', f'Last Name: {record[2].title()}', f'Team Name: {record[5].title()}', sep='\n')
        print('\n')
 
-
+# insert a player
 def insert_player(cursor):
     first_name = 'smeagol'
     last_name = 'shire folk'
@@ -77,7 +86,8 @@ def insert_player(cursor):
     insert_statement = """INSERT INTO player (first_name, last_name, team_id) VALUES (%s, %s, %s)"""
     insert_values = (first_name, last_name, team_id)
     cursor.execute(insert_statement, insert_values)
-   
+
+# move player from one team to another   
 def player_trade(cursor):
     new_team_id = 2
     query_field = 'first_name'
@@ -86,14 +96,13 @@ def player_trade(cursor):
     update_values = (new_team_id, query_value)
     cursor.execute(update_statement, update_values)
 
+# eliminate a player from the rosters
 def delete_player(cursor):
     delete_criteria = 'smeagol'
     delete_statement ="""DELETE FROM player WHERE first_name = %s"""
     delete_criteria = (delete_criteria,)
     cursor.execute(delete_statement, delete_criteria)
     
-    
-
 
 if __name__ == '__main__':
     #dbConnect(pysportsdb)
