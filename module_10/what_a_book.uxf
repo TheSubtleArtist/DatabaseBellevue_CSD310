@@ -1,0 +1,66 @@
+<diagram program="umletino" version="15.0.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>750</x><y>70</y><w>100</w><h>300</h></coordinates><panel_attributes>BOOK
+--
+BOOK_ID
+-int
+-not null
+-auto-increment
+-primary key
+
+BOOK_NAME
+-varchar(200)
+-not null
+
+BOOK_AUTHOR
+-varchar(200)
+-not null
+
+BOOK_DETALS
+-varchar(200)
+-not null
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>130</x><y>80</y><w>100</w><h>260</h></coordinates><panel_attributes>USER
+--
+USER_ID
+-int
+-not null
+-auto_increment
+-primary key
+
+FIRST_NAME
+-varchar (75)
+-not null
+
+LAST_NAME
+-varchar(75)
+-not null</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>430</x><y>80</y><w>100</w><h>280</h></coordinates><panel_attributes>WISHLISTS
+--
+WISHLIST_ID
+-int
+-not null
+-auto increment
+-primary key
+
+USER_ID
+-int
+-not null
+-foreign key (user.user_id)
+
+BOOK_ID
+-int
+-not null
+-foreign key (book.book_id)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>740</x><y>490</y><w>100</w><h>180</h></coordinates><panel_attributes>STORE
+--
+STORE_ID
+-int
+-not null
+-primary key
+
+LOCALE
+-varchar(500)
+-not null</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>520</x><y>210</y><w>250</w><h>50</h></coordinates><panel_attributes>lt=-&gt;
+
+m1=1..N
+m2=1..N</panel_attributes><additional_attributes>10;20;230;20</additional_attributes></element><element><id>Relation</id><coordinates><x>220</x><y>210</y><w>230</w><h>40</h></coordinates><panel_attributes>lt=-&gt;
+m1=1..1
+m2=1..N</panel_attributes><additional_attributes>10;10;210;10</additional_attributes></element><element><id>Relation</id><coordinates><x>780</x><y>360</y><w>50</w><h>150</h></coordinates><panel_attributes>lt=&lt;-
+m1=1..N
+m2=1..N</panel_attributes><additional_attributes>10;10;10;130</additional_attributes></element></diagram>
