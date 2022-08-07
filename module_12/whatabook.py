@@ -28,3 +28,20 @@ def dbConnect(connect):
             print('The specified database does not exist')
         else:
             print(err)
+
+# print all books
+
+def testFunctions(cursor):
+    printBooks(cursor)
+
+def printBooks(cursor):
+    cursor.execute('show books')
+    for record in cursor:
+        print(record)
+
+
+if __name__ == '__main__':
+    testFunctions(whatabookcursor)
+
+    #input('Press any key to continue...')
+    #exit(0)
