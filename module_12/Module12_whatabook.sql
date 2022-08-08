@@ -88,11 +88,9 @@ INSERT INTO wishlist (user_id, book_id) VALUES
 
 
 ALTER TABLE book ADD COLUMN store INT NOT NULL AFTER book_detail;
-ALTER TABLE book
-ADD CONSTRAINT fk_store
-FOREIGN KEY (store) REFERENCES store(store_id);
 
 ALTER TABLE store ADD COLUMN open_time VARCHAR(12) NOT NULL AFTER locale;
+
 ALTER TABLE store ADD COLUMN close_time VARCHAR(12) NOT NULL AFTER open_time;
 
 UPDATE store SET open_time = '24 Hrs', close_time = '24 Hrs' where store_id = 1;
