@@ -1,5 +1,9 @@
 import mysql.connector
 from mysql.connector import errorcode
+from time import sleep
+
+
+wt = .25 #sleep time to accommodate processor speed
 
 # parameter to establish the connection
 config = {
@@ -16,7 +20,6 @@ whatabookdb = mysql.connector.connect(**config)
 # create the cursor
 whatabookcursor = whatabookdb.cursor()
 
-
 def dbConnect(connect):
     try:
         whatabookdb
@@ -29,12 +32,27 @@ def dbConnect(connect):
         else:
             print(err)
 
+# make sure user input is not a letter or a string
+def validate_input(user_input):
+    validated = False
+    while validated == False:
+        try:
+            user_input = int(user_input)
+            validated = True
+        except:
+            user_input = input('Invalid Input. Please Try again: ')
+    return str(user_input)
+
 # print all books
 def show_books(cursor):
     print('--DISPLAYING ALL BOOKS--')
     cursor.execute('SELECT * FROM book INNER JOIN store ON book.store_id')
     for record in cursor:
-        print(f"Book ID: {record[0]}", f"Title: {record[1].title()}", f"Author: {record[2].title()}", f"Book Detail: {record[3].title()}", f"Location: {record[6]}", sep='\n' )
+        #print(record)
+        print(f"Book ID: {record[0]}", f"Title: {record[1].title()}", \
+            f"Author: {record[2].title()}", f"Book Detail: {record[3].title()}", \
+                f"Location: {record[7].title()}", sep='\n' )
+        sleep(wt)
         print('\n')
     print('\n')
 
@@ -44,7 +62,9 @@ def show_stores(cursor):
     print('\n', '--DISPLAYING STORE LOCATIONS--')
     cursor.execute('SELECT * FROM store')
     for record in cursor:
+        #print(record)
         print(f"Store {record[0]}: {record[1].title()}")
+        sleep(wt)
     print('\n')
 
 
@@ -52,6 +72,7 @@ def show_stores(cursor):
 def get_user(cursor):
     # Set a flag to create a loop to go through User ID until a valid User ID is input
     flag = False
+    all_user = [] # storage list for all user ID
     # Enter the while loop
     while flag == False:
         print('\n','--DISPLAYING ALL USERS-- ')
@@ -60,11 +81,14 @@ def get_user(cursor):
         user_list = cursor.fetchall()
         # print all the entries in the user table
         for u in user_list:
-            print(f"User ID: {u[0]}", f"Name: {u[1].title()} {u[2].title()}", sep="  ")  
+            all_user.append(u[0])
+            print(f"User ID: {u[0]}", f"Name: {u[1].title()} {u[2].title()}", sep="  ")
+            sleep(wt)  
         # request user input which matches one of the displayed users 
-        requested_user = input('Enter a valid user ID: ')
+        userid_input = input('Enter a valid user ID: ')
+        requested_user = validate_input(userid_input)
         # test if the input supplied matches one of the user id's 
-        if int(requested_user) < 1 or int(requested_user) > 3:
+        if int(requested_user) not in all_user: # make sure requested_user is an actual user
             print('Invalid User ID. Please try again', '\n')
         else:
             # exit the while loop if input is a match
@@ -87,7 +111,9 @@ def display_wishlist(cursor):
     # find an acceptable user id
     requested_user = get_user(cursor)
     # form the SQL statement
-    wishlist_request = ("SELECT * FROM user_table INNER JOIN wishlist ON user_table.user_id = wishlist.user_id INNER JOIN book ON wishlist.book_id = book.book_id WHERE user_table.user_id = %s")
+    wishlist_request = ("SELECT * FROM user_table \
+        INNER JOIN wishlist ON user_table.user_id = wishlist.user_id \
+        INNER JOIN book ON wishlist.book_id = book.book_id WHERE user_table.user_id = %s")
     # send the SQL statement and the acceptable user ID to the database
     cursor.execute(wishlist_request, (requested_user,))
     # fetch all records returned by the cursor
@@ -107,30 +133,33 @@ def books_to_add(cursor):
     # obtain an acceptable user ID
     requested_user = get_user(cursor)
     # format the SQL query
-    available_books_request = ("SELECT book_id, book_name, book_author FROM book WHERE book_id NOT IN (SELECT book_id FROM wishlist WHERE user_id = %s)")
+    available_books_request = ("SELECT book_id, book_name, book_author FROM book \
+        WHERE book_id NOT IN (SELECT book_id FROM wishlist WHERE user_id = %s)")
     # send query and the user ID to the database
     cursor.execute(available_books_request, (requested_user,))
     available_books = cursor.fetchall()
     print('\n', '--Books available for addition to the user wishlist--')
+    # show books not currently in the user wishlist
     for r in available_books:
+        # appends the book_id to list created previously
         all_book_id.append(r[0])
         print(f"Book ID: {r[0]}", f"Book Title: {r[1].title()}", f"Author: {r[2].title()}", sep="\n")
         print('\n')
-    print(all_book_id)
+    # testing to make sure the list was populated
+    #print(all_book_id)
     while flag == False:
         requested_book = input("Select Book ID for addition to wishlist: ")
+        requested_book = validate_input(requested_book)
+        # prevent user from entering any book_id not eligible for adding to the user wishlist
         if int(requested_book) not in all_book_id:
             print('Invalid Selection. Try Again')
         else:
             flag = True
     cursor.execute("INSERT INTO wishlist(user_id, book_id) VALUES ({}, {})".format(requested_user, requested_book))
 
-#def add_to_wishlist(cursor, user, book):
-#    cursor.execute("INSERT INTO wishlist(user_id, book_id) VALUES ({}, {})".format(user, book))
-
 # Exit the program
 def exit_program(cursor):
-    print('All Hail Google!')
+    print('Goodbye')
     whatabookdb.commit()
     whatabookdb.close()
     exit(0)
@@ -144,9 +173,11 @@ def show_menu(menu):
 def main(cursor):
     show_menu(main_menu)
     flag = False
+    # Make sure user enters a vlue available in the Main Menu
     while flag == False:
         main_option = input("Please select an option: ")
-        if int(main_option) < 1 or int(main_option) > 4:
+        main_option = validate_input(main_option)
+        if  main_option not in main_menu.keys():
             print("Invalid Option. Please Try Again")
         else:
             flag = True
@@ -158,7 +189,9 @@ def user(cursor):
     show_menu(user_menu)
     while flag == False:
         user_option = input('Enter an option: ')
-        if int(user_option) < 5 or int(user_option) > 8:
+        user_option = validate_input(user_option)
+        # prevent user from entering an option not available to the User Menu
+        if user_option not in user_menu.keys():
             print("Invalid Input. Please try again")
         else: 
             flag = True
@@ -188,7 +221,6 @@ function_list = {
     '7': books_to_add,
     '8': main
 }
-
 
 if __name__ == '__main__':
     print('\n', 'Welcome to What a Book')

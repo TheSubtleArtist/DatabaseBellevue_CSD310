@@ -52,7 +52,7 @@ CREATE TABLE wishlist (
 );
 
 -- insert store
-INSERT INTO store(locale) values('Online');
+INSERT INTO store(locale) values('online');
 
 -- insert users
 INSERT INTO user_table (first_name, last_name) VALUES
