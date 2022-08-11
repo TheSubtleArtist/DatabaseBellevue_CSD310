@@ -1,15 +1,15 @@
-DROP DATABASE IF EXISTS whatabook;
+/* DROP DATABASE IF EXISTS whatabook_walk; */
 DROP USER IF EXISTS 'whatabook_user'@'localhost'; 
 
 -- create new database 'whatabook'
-CREATE DATABASE whatabook;
-USE whatabook;
+CREATE DATABASE whatabook_walk;
+USE whatabook_walk;
 
 -- create whatabook_user and grant them all privileges to the pysports database 
 CREATE USER 'whatabook_user'@'localhost' IDENTIFIED WITH mysql_native_password BY 'MySQL8IsGreat!';
 
 -- grant all privileges to the pysports database to user pysports_user on localhost 
-GRANT ALL PRIVILEGES ON whatabook.* TO'whatabook_user'@'localhost';
+GRANT ALL PRIVILEGES ON whatabook_walk.* TO'whatabook_user'@'localhost';
 
 -- create the store table 
 CREATE TABLE store (
@@ -75,6 +75,7 @@ INSERT INTO book (book_author, book_name, book_detail) VALUES
     select * from user_table;
     select * from book;
     select * from store;
+    select * from wishlist;
     
     
 -- create wishlist

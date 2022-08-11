@@ -10,7 +10,7 @@ config = {
     'user'             :'whatabook_user',
     'password'         :'MySQL8IsGreat!',
     'host'             :'127.0.0.1',
-    'database'         :'whatabook',
+    'database'         :'whatabook_walk',
     'raise_on_warnings':True
 }
 
@@ -144,6 +144,7 @@ def books_to_add(cursor):
         # appends the book_id to list created previously
         all_book_id.append(r[0])
         print(f"Book ID: {r[0]}", f"Book Title: {r[1].title()}", f"Author: {r[2].title()}", sep="\n")
+        sleep(wt)
         print('\n')
     # testing to make sure the list was populated
     #print(all_book_id)
